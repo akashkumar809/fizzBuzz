@@ -6,6 +6,7 @@ import com.demo.fizzbuzz.service.FizzBuzzService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/fizzbuzz")
 public class FizzBuzzController {
 
-  private FizzBuzzService service;
-
-  public FizzBuzzController(final FizzBuzzService service) {
-    this.service = service;
-  }
+  @Autowired private FizzBuzzService service;
 
   @ApiOperation(value = "Get the fizzBuzz result for a single number")
   @RequestMapping(
