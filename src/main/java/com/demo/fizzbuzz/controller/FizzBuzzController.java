@@ -6,6 +6,7 @@ import com.demo.fizzbuzz.service.FizzBuzzService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +33,7 @@ public class FizzBuzzController {
       @RequestBody SingleFizzBuzzRequest request) {
     log.info(
         "[/FizzBuzzController][/getFizzBuzzForSingleNumber] - get fizz buzz result for single number");
-    return service.getFizzBuzzForSingleNumber(request);
+    return new ResponseEntity<>(service.getFizzBuzzForSingleNumber(request), HttpStatus.OK);
   }
 
   @ApiOperation(value = "Get the fizzBuzz result for a range of numbers")
@@ -44,6 +45,6 @@ public class FizzBuzzController {
       @RequestBody RangeFizzBuzzRequest request) {
     log.info(
         "[/FizzBuzzController][/getFizzBuzzForRangeOfNumber] - get fizz buzz result for range of number");
-    return service.getFizzBuzzForRangeN(request);
+    return new ResponseEntity<>(service.getFizzBuzzForRangeN(request), HttpStatus.OK);
   }
 }
